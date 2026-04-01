@@ -1,0 +1,39 @@
+# --- Vivado Common ---
+*.log
+*.jou
+*.backup.log
+*.backup.jou
+*.str
+.Xil/
+vivado_pid*.str
+vivado_pid*.tag
+
+# --- Vivado Project Results (재생성 가능하므로 제외) ---
+# 프로젝트 폴더 자체를 관리하기보다 Tcl 스크립트로 재생성하는 방식을 권장합니다.
+/vivado_project_folder/
+*.run/
+*.gen/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+
+# --- Synopsys (Design Compiler / IC Compiler) ---
+# 툴 실행 시 생성되는 임시 및 결과 파일
+command.log
+filenames.log
+default.svf
+*.sdc.BAK
+*.syn
+*.pvl
+*.mr
+*.intermediate
+*.dw
+/work/
+ALIB-5.1/
+
+# --- VS Code & OS ---
+.vscode/
+.DS_Store
+Thumbs.db
