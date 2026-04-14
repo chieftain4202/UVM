@@ -24,8 +24,9 @@ module SPI_master (
     spi_state_e state;
     logic [7:0] div_cnt, tx_shift_reg, rx_shift_reg;
     logic [2:0] bit_cnt;
-    logic half_tick;
+    logic half_tick, phase, sclk_r;
 
+    assign sclk = sclk_r;
 
     always_ff @(posedge clk, posedge rst) begin
         if (rst) begin
@@ -54,10 +55,69 @@ module SPI_master (
             done         <= 1'b0;
             tx_shift_reg <= 0;
             rx_shift_reg <= 0;
-            bit_cnt <= 0;
-
+            bit_cnt      <= 0;
+            phase        <= 1'b0;
+            rx_data      <= 0;
+            sclk_r       <= 1'b0;
         end else begin
+            done <= 1'b0;
+            case (state)
+                IDLE: begin
+                    mosi   <= 1'b1;
+                    cs_n   <= 1'b1;
+                    sclk_r <= 1'b0;
+                    if (start) begin
+                        tx_shift_reg <= tx_data;
+                        bit_cnt      <= 0;
+                        phase        <= 1'b0;
+                        busy         <= 1'b1;
+                        cs_n         <= 1'b0;
+                        state        <= START;
+                    end
+                end
 
+                START: begin
+                    mosi         <= tx_shift_reg[7];
+                    tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                    state        <= DATA;
+                end
+
+                DATA: begin
+                    if (half_tick) begin
+                        sclk <= ~sclk;
+                        if (phase == 0) begin  // 수신 구간
+                            phase <= 1'b1;
+                            rx_shift_reg <= {rx_shift_reg[6:0], miso};
+
+                        end else begin  // 송신 구간
+                            phase <= 1'b0;
+                            if (bit_cnt < 7) begin
+                                mosi         <= tx_shift_reg[7];
+                                tx_shift_reg <= {tx_shift_reg[6:0], 1'b0};
+                                state        <= DATA;
+                            end
+                            if (bit_cnt == 7) begin
+                                state <= STOP;
+                                rx_data <= rx_shift_reg;
+                            end else begin
+                                bit_cnt <= bit_cnt + 1;
+                                state   <= DATA;
+                            end
+                        end
+
+                    end
+                end
+
+                STOP: begin
+                    sclk_r <= 1'b0;
+                    cs_n   <= 1'b1;
+                    done   <= 1'b1;
+                    busy   <= 1'b0;
+                    mosi   <= 1'b1;
+                    state  <= IDLE;
+                end
+                default: state <= IDLE;
+            endcase
         end
 
     end
