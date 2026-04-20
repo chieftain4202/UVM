@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_SPI_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_SPI_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="34631520fs"></ZoomStartTime>
+      <ZoomEndTime time="36251521fs"></ZoomEndTime>
+      <Cursor1Time time="35367520fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="184"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/tb_SPI_top/dut/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/bit_cnt" type="array">
+      <obj_property name="ElementShortName">bit_cnt[2:0]</obj_property>
+      <obj_property name="ObjectShortName">bit_cnt[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/s_tx_data" type="array">
+      <obj_property name="ElementShortName">s_tx_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_tx_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/sw_data" type="array">
+      <obj_property name="ElementShortName">sw_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sw_data[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/mem" type="array">
+      <obj_property name="ElementShortName">mem[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/addr" type="array">
+      <obj_property name="ElementShortName">addr[1:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/idata" type="array">
+      <obj_property name="ElementShortName">idata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">idata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/odata" type="array">
+      <obj_property name="ElementShortName">odata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">odata[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/mem" type="array">
+      <obj_property name="ElementShortName">mem[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem[0:3][7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="group80" type="group">
+      <obj_property name="label">Master</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/cpol" type="logic">
+         <obj_property name="ElementShortName">cpol</obj_property>
+         <obj_property name="ObjectShortName">cpol</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/cpha" type="logic">
+         <obj_property name="ElementShortName">cpha</obj_property>
+         <obj_property name="ObjectShortName">cpha</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/clk_div" type="array">
+         <obj_property name="ElementShortName">clk_div[7:0]</obj_property>
+         <obj_property name="ObjectShortName">clk_div[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/tx_data" type="array">
+         <obj_property name="ElementShortName">tx_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/start" type="logic">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/miso" type="logic">
+         <obj_property name="ElementShortName">miso</obj_property>
+         <obj_property name="ObjectShortName">miso</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/rx_data" type="array">
+         <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/busy" type="logic">
+         <obj_property name="ElementShortName">busy</obj_property>
+         <obj_property name="ObjectShortName">busy</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/sclk" type="logic">
+         <obj_property name="ElementShortName">sclk</obj_property>
+         <obj_property name="ObjectShortName">sclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/mosi" type="logic">
+         <obj_property name="ElementShortName">mosi</obj_property>
+         <obj_property name="ObjectShortName">mosi</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/cs_n" type="logic">
+         <obj_property name="ElementShortName">cs_n</obj_property>
+         <obj_property name="ObjectShortName">cs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/t_idle" type="logic">
+         <obj_property name="ElementShortName">t_idle</obj_property>
+         <obj_property name="ObjectShortName">t_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/bit_cnt" type="array">
+         <obj_property name="ElementShortName">bit_cnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_cnt[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/state" type="array">
+         <obj_property name="ElementShortName">state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/div_cnt" type="array">
+         <obj_property name="ElementShortName">div_cnt[7:0]</obj_property>
+         <obj_property name="ObjectShortName">div_cnt[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/tx_shift_reg" type="array">
+         <obj_property name="ElementShortName">tx_shift_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/rx_shift_reg" type="array">
+         <obj_property name="ElementShortName">rx_shift_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_shift_reg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/half_tick" type="logic">
+         <obj_property name="ElementShortName">half_tick</obj_property>
+         <obj_property name="ObjectShortName">half_tick</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/step" type="logic">
+         <obj_property name="ElementShortName">step</obj_property>
+         <obj_property name="ObjectShortName">step</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_master/sclk_r" type="logic">
+         <obj_property name="ElementShortName">sclk_r</obj_property>
+         <obj_property name="ObjectShortName">sclk_r</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group81" type="group">
+      <obj_property name="label">Slave</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/sclk" type="logic">
+         <obj_property name="ElementShortName">sclk</obj_property>
+         <obj_property name="ObjectShortName">sclk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/mosi" type="logic">
+         <obj_property name="ElementShortName">mosi</obj_property>
+         <obj_property name="ObjectShortName">mosi</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/tx_data" type="array">
+         <obj_property name="ElementShortName">tx_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/bit_cnt" type="array">
+         <obj_property name="ElementShortName">bit_cnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_cnt[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/cs_n" type="logic">
+         <obj_property name="ElementShortName">cs_n</obj_property>
+         <obj_property name="ObjectShortName">cs_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/t_idle" type="logic">
+         <obj_property name="ElementShortName">t_idle</obj_property>
+         <obj_property name="ObjectShortName">t_idle</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/rx_data" type="array">
+         <obj_property name="ElementShortName">rx_data[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_data[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/sdone" type="logic">
+         <obj_property name="ElementShortName">sdone</obj_property>
+         <obj_property name="ObjectShortName">sdone</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/miso" type="logic">
+         <obj_property name="ElementShortName">miso</obj_property>
+         <obj_property name="ObjectShortName">miso</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/edge_d" type="logic">
+         <obj_property name="ElementShortName">edge_d</obj_property>
+         <obj_property name="ObjectShortName">edge_d</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/e_rise" type="logic">
+         <obj_property name="ElementShortName">e_rise</obj_property>
+         <obj_property name="ObjectShortName">e_rise</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/e_fall" type="logic">
+         <obj_property name="ElementShortName">e_fall</obj_property>
+         <obj_property name="ObjectShortName">e_fall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/tx_shift_reg" type="array">
+         <obj_property name="ElementShortName">tx_shift_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_shift_reg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/rx_shift_reg" type="array">
+         <obj_property name="ElementShortName">rx_shift_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_shift_reg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_btn_debounce_start/o_btn" type="logic">
+         <obj_property name="ElementShortName">o_btn</obj_property>
+         <obj_property name="ObjectShortName">o_btn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_btn_debounce/o_btn" type="logic">
+         <obj_property name="ElementShortName">o_btn</obj_property>
+         <obj_property name="ObjectShortName">o_btn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_slave/sdone" type="logic">
+         <obj_property name="ElementShortName">sdone</obj_property>
+         <obj_property name="ObjectShortName">sdone</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/addr" type="array">
+         <obj_property name="ElementShortName">addr[1:0]</obj_property>
+         <obj_property name="ObjectShortName">addr[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/done" type="logic">
+         <obj_property name="ElementShortName">done</obj_property>
+         <obj_property name="ObjectShortName">done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/idata" type="array">
+         <obj_property name="ElementShortName">idata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">idata[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/odata" type="array">
+         <obj_property name="ElementShortName">odata[7:0]</obj_property>
+         <obj_property name="ObjectShortName">odata[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_SPI_top/dut/u_fnd/U_mem/mem" type="array">
+         <obj_property name="ElementShortName">mem[0:3][7:0]</obj_property>
+         <obj_property name="ObjectShortName">mem[0:3][7:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

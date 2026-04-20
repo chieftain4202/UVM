@@ -1,0 +1,142 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.3.0 Chrome/140.0.7339.249 Electron/38.7.2 Safari/537.36" version="29.3.0">
+  <diagram id="I2C_MASTER_ASM" name="I2C master ASM">
+    <mxGraphModel dx="3608" dy="2282" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1250" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=26;fontStyle=1" value="i2c_master.sv ASM Chart" vertex="1">
+          <mxGeometry height="40" width="420" x="700" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="shape=note;whiteSpace=wrap;html=1;rounded=0;shadow=0;strokeColor=#666666;fillColor=#fff2cc;fontSize=13" value="범례&lt;br&gt;파란 박스: state&lt;br&gt;보라 박스: 제어 신호 / 레지스터 저장&lt;br&gt;주황 마름모: 분기 조건&lt;br&gt;초록 박스: clock / 공통 출력" vertex="1">
+          <mxGeometry height="140" width="270" x="1560" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="common" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=13" value="공통 출력 / tick&lt;br&gt;&lt;br&gt;scl = scl_r&lt;br&gt;sda_o = sda_r&lt;br&gt;busy = (state != IDLE)&lt;br&gt;qtr_tick: div_cnt == 249&lt;br&gt;done: 매 clk 기본 0" vertex="1">
+          <mxGeometry height="150" width="250" x="130" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="opendrain" parent="1" style="shape=note;whiteSpace=wrap;html=1;rounded=0;shadow=0;strokeColor=#666666;fillColor=#f5f5f5;fontSize=13" value="SDA open-drain 의미&lt;br&gt;&lt;br&gt;sda_o/sda_r = 1 : Z, release&lt;br&gt;sda_o/sda_r = 0 : SDA low drive&lt;br&gt;sda_i : 외부 SDA sample" vertex="1">
+          <mxGeometry height="125" width="260" x="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="reset" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#82b366;fillColor=#d5e8d4;fontSize=13" value="rst = 1&lt;br&gt;&lt;br&gt;state = IDLE&lt;br&gt;scl_r = 1, sda_r = 1&lt;br&gt;step = 0, done = 0&lt;br&gt;tx/rx_shift_reg = 0&lt;br&gt;bit_cnt = 0&lt;br&gt;is_read = 0&lt;br&gt;ack_in_r = 1" vertex="1">
+          <mxGeometry height="160" width="220" x="-190" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="warn_ack" parent="1" style="shape=note;whiteSpace=wrap;html=1;rounded=0;shadow=0;strokeColor=#b85450;fillColor=#f8cecc;fontSize=13" value="RTL 확인 메모&lt;br&gt;&lt;br&gt;DATA_ACK read에서 sda_r &lt;= ack_in_r 사용.&lt;br&gt;현재 파일에서는 ack_in_r가 reset 외에는 갱신되지 않음.&lt;br&gt;ack_in 직접 사용 의도라면 RTL 점검 필요." vertex="1">
+          <mxGeometry height="135" width="300" x="980" y="77.5" as="geometry" />
+        </mxCell>
+        <mxCell id="idle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="IDLE&lt;br&gt;&lt;br&gt;scl_r = 1&lt;br&gt;sda_r = 1&lt;br&gt;busy = 0" vertex="1">
+          <mxGeometry height="115" width="210" x="-185" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="START&lt;br&gt;&lt;br&gt;start condition 생성&lt;br&gt;qtr_tick마다 step 진행" vertex="1">
+          <mxGeometry height="115" width="210" x="150" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="wait_cmd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="WAIT_CMD&lt;br&gt;&lt;br&gt;step = 0&lt;br&gt;host command 대기&lt;br&gt;우선순위: write &gt; read &gt; stop &gt; start" vertex="1">
+          <mxGeometry height="115" width="230" x="545" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="data" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="DATA&lt;br&gt;&lt;br&gt;8-bit transfer&lt;br&gt;qtr_tick 4-step 반복&lt;br&gt;bit_cnt 0..7" vertex="1">
+          <mxGeometry height="115" width="210" x="972.5" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="data_ack" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="DATA_ACK&lt;br&gt;&lt;br&gt;ACK/NACK phase&lt;br&gt;write: slave ACK sample&lt;br&gt;read: master ACK drive" vertex="1">
+          <mxGeometry height="115" width="230" x="1355" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="stop" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;fontSize=14;fontStyle=1" value="STOP&lt;br&gt;&lt;br&gt;stop condition 생성&lt;br&gt;qtr_tick마다 step 진행" vertex="1">
+          <mxGeometry height="115" width="210" x="1730" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="idle_action" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13" value="&lt;b&gt;cmd_start = 1&lt;/b&gt;&lt;div&gt;&lt;br&gt;state &amp;lt;= START&lt;br&gt;step &amp;lt;= 0&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="220" x="-190" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="start_steps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13;align=left;" value="START step @ qtr_tick&lt;br&gt;&lt;br&gt;0:&amp;nbsp; &amp;nbsp; &amp;nbsp; sda_r=1, scl_r=1, step=1&lt;br&gt;1:&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;sda_r=0, step=2&lt;br&gt;2:&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp; hold, step=3&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;3: &lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;scl_r=0, step=0&lt;/span&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;done=1, state=WAIT_CMD&lt;/div&gt;" vertex="1">
+          <mxGeometry height="155" width="250" x="130" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="wait_actions" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13" value="WAIT_CMD 저장 / 분기&lt;br&gt;&lt;br&gt;cmd_write:&lt;br&gt;tx_shift_reg &lt;= tx_data&lt;br&gt;bit_cnt &lt;= 0, is_read &lt;= 0&lt;br&gt;state &lt;= DATA&lt;br&gt;&lt;br&gt;cmd_read:&lt;br&gt;rx_shift_reg &lt;= 0&lt;br&gt;bit_cnt &lt;= 0, is_read &lt;= 1&lt;br&gt;state &lt;= DATA&lt;br&gt;&lt;br&gt;cmd_stop: state &lt;= STOP&lt;br&gt;cmd_start: state &lt;= START" vertex="1">
+          <mxGeometry height="285" width="270" x="525" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="data_steps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13" value="DATA step @ qtr_tick&lt;br&gt;&lt;br&gt;0: scl_r=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;sda_r = is_read ? 1 : tx_shift_reg[7]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;step=1&lt;br&gt;&lt;br&gt;1: scl_r=1, step=2&lt;br&gt;&lt;br&gt;2: scl_r=1&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if read: rx_shift_reg &lt;= {rx_shift_reg[6:0], sda_i}&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;step=3&lt;br&gt;&lt;br&gt;3: scl_r=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if write: tx_shift_reg &lt;= {tx_shift_reg[6:0], 1&#39;b0}&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;step=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if bit_cnt==7: state=DATA_ACK&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;else: bit_cnt++" vertex="1">
+          <mxGeometry height="350" width="355" x="900" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="ack_steps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13" value="DATA_ACK step @ qtr_tick&lt;br&gt;&lt;br&gt;0: scl_r=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if read: sda_r &lt;= ack_in_r&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;else: sda_r &lt;= 1 release&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;step=1&lt;br&gt;&lt;br&gt;1: scl_r=1, step=2&lt;br&gt;&lt;br&gt;2: scl_r=1&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if write: ack_out &lt;= sda_i&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;if read: rx_data &lt;= rx_shift_reg&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;step=3&lt;br&gt;&lt;br&gt;3: scl_r=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;done=1, step=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;state=WAIT_CMD" vertex="1">
+          <mxGeometry height="330" width="330" x="1305" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="stop_steps" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;fontSize=13" value="STOP step @ qtr_tick&lt;br&gt;&lt;br&gt;0: sda_r=0, scl_r=0, step=1&lt;br&gt;1: scl_r=1, step=2&lt;br&gt;2: sda_r=1, step=3&lt;br&gt;3: step=0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;done=1&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;state=IDLE" vertex="1">
+          <mxGeometry height="185" width="250" x="1710" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="storage_summary" parent="1" style="shape=swimlane;horizontal=0;whiteSpace=wrap;html=1;startSize=32;strokeColor=#666666;fillColor=#f5f5f5;fontSize=13;fontStyle=1" value="저장 / 제어 신호 요약" vertex="1">
+          <mxGeometry height="245" width="1160" x="40" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="storage_text" parent="storage_summary" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=13;fontStyle=0" value="state: IDLE, START, WAIT_CMD, DATA, DATA_ACK, STOP&lt;br&gt;step: START/DATA/DATA_ACK/STOP에서 0..3 quarter-step 진행, WAIT_CMD에서 0으로 초기화&lt;br&gt;tx_shift_reg: cmd_write에서 tx_data 저장, DATA step3에서 write일 때 left shift&lt;br&gt;rx_shift_reg: cmd_read에서 0으로 초기화, DATA step2에서 read일 때 sda_i shift-in&lt;br&gt;rx_data: DATA_ACK step2에서 read일 때 rx_shift_reg 저장&lt;br&gt;ack_out: DATA_ACK step2에서 write일 때 sda_i 저장, 0=ACK / 1=NACK로 해석&lt;br&gt;scl_r/sda_r: 실제 I2C waveform 제어, sda_r=1은 release(Z), 0은 low drive&lt;br&gt;done: START step3, DATA_ACK step3, STOP step3에서 1-cycle pulse" vertex="1">
+          <mxGeometry height="210" width="1090" x="45" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="read_write_note" parent="1" style="shape=note;whiteSpace=wrap;html=1;rounded=0;shadow=0;strokeColor=#666666;fillColor=#fff2cc;fontSize=13" value="DATA 동작 구분&lt;br&gt;&lt;br&gt;write: SDA로 tx_shift_reg[7] 전송, 8bit 후 ACK를 sda_i에서 받음&lt;br&gt;&lt;br&gt;read: SDA release 후 sda_i를 sample, 8bit 후 master ACK/NACK를 SDA로 보냄" vertex="1">
+          <mxGeometry height="155" width="360" x="1290" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_reset_idle" edge="1" parent="1" source="reset" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="idle" value="rst 해제 후">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_idle_start" edge="1" parent="1" source="idle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="start" value="cmd_start">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_start_wait" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="wait_cmd" value="step3 / done">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wait_data" edge="1" parent="1" source="wait_cmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="data" value="cmd_write or cmd_read">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_data_ack" edge="1" parent="1" source="data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="data_ack" value="bit_cnt == 7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wait_stop" edge="1" parent="1" source="wait_cmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;" target="stop" value="cmd_stop">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1260" y="360" />
+              <mxPoint x="1260" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_ack_wait" edge="1" parent="1" source="data_ack" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=17;strokeColor=#9673a6" target="wait_cmd" value="step3 / done">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="275" />
+              <mxPoint x="620" y="275" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_stop_idle" edge="1" parent="1" source="stop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9673a6;fontSize=17;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.834;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;" target="idle" value="step3 / done">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1840" y="330" />
+              <mxPoint x="1840" y="250" />
+              <mxPoint x="-10" y="250" />
+              <mxPoint x="-10" y="328" />
+            </Array>
+            <mxPoint x="1654.94" y="329.9999999999998" as="sourcePoint" />
+            <mxPoint x="-220.0011764705883" y="329.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_wait_restart" edge="1" parent="1" source="wait_cmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#9673a6;fontSize=17;" target="start" value="cmd_start / repeated START">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="500" />
+              <mxPoint x="290" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_idle_detail" edge="1" parent="1" source="idle" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="idle_action" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_start_detail" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="start_steps" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_wait_detail" edge="1" parent="1" source="wait_cmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="wait_actions" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_data_detail" edge="1" parent="1" source="data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="data_steps" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ack_detail" edge="1" parent="1" source="data_ack" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="ack_steps" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_stop_detail" edge="1" parent="1" source="stop" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#9673a6;fontSize=12" target="stop_steps" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

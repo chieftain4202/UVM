@@ -1,0 +1,1 @@
+-debug "typical" "work.demo_slave" -s "demo_slave_check" 

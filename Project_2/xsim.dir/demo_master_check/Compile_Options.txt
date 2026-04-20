@@ -1,0 +1,1 @@
+-debug "typical" "work.demo_master" -s "demo_master_check" 

@@ -2,5 +2,13 @@
 2020.2
 Nov 18 2020
 09:47:47
-D:/Project_2/20260414_SPI/20260414_SPI.srcs/sim_1/new/tb_spi.sv,1776152264,systemVerilog,,,,tb_spi_master,,,,,,,,
-D:/Project_2/20260414_SPI/20260414_SPI.srcs/sources_1/new/SPI_master.sv,1776152230,systemVerilog,,D:/Project_2/20260414_SPI/20260414_SPI.srcs/sim_1/new/tb_spi.sv,,SPI_master,,,,,,,,
+D:/Project_2/20260415_spi/20260415_spi.srcs/sources_1/imports/new/SPI_master.sv,1776632077,systemVerilog,,D:/Project_2/20260415_spi/20260415_spi.srcs/sources_1/imports/new/SPI_slave.sv,,SPI_master,,,,,,,,
+D:/Project_2/20260415_spi/20260415_spi.srcs/sources_1/imports/new/SPI_slave.sv,1776335482,systemVerilog,,D:/Project_2/20260415_spi/20260415_spi.srcs/sim_1/imports/new/tb_spi.sv,,SPI_slave,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sim_1/new/tb_demo_top.sv,1776633429,systemVerilog,,,,tb_demo_top,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/I2c_demo_top.sv,1776513723,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sim_1/new/tb_demo_top.sv,,I2c_demo_top,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/i2c_master.sv,1776510109,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/i2c_slave.sv,,I2C_Master;i2c_master,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/i2c_slave.sv,1776514372,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/top_I2c_MS.sv,,i2c_slave,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/top_I2c_MS.sv,1776511338,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd.sv,,btn_debounce;sw_data;top_I2c_MS,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/demo_master.sv,1776515150,systemVerilog,,,,demo_master;dm_I2C_Master;dm_btn_debounce;dm_i2c_master;dm_sw_data,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd.sv,1776512652,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/I2c_demo_top.sv,,Mem;bcd;clk_div;counter;counter_4;decoder_2X4;digit_splitter;fnd_controller;mux_4X1,,,,,,,,
+D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd_top.sv,1776501070,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd.sv,,fnd_top;regaddr,,,,,,,,
