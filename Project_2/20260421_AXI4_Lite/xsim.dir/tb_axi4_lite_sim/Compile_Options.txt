@@ -1,0 +1,1 @@
+"tb_axi4_lite" -s "tb_axi4_lite_sim" 

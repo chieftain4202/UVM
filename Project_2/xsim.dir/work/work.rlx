@@ -12,3 +12,4 @@ D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/
 D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/demo_master.sv,1776515150,systemVerilog,,,,demo_master;dm_I2C_Master;dm_btn_debounce;dm_i2c_master;dm_sw_data,,,,,,,,
 D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd.sv,1776512652,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/imports/new/I2c_demo_top.sv,,Mem;bcd;clk_div;counter;counter_4;decoder_2X4;digit_splitter;fnd_controller;mux_4X1,,,,,,,,
 D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd_top.sv,1776501070,systemVerilog,,D:/Project_2/20260417_I2C_fnd_team/20260417_I2C_fnd_team.srcs/sources_1/new/fnd.sv,,fnd_top;regaddr,,,,,,,,
+D:/Project_2/20260421_AXI4_Lite/20260421_AXI4_Lite.srcs/sources_1/new/axi4_lite_master.sv,1776748889,systemVerilog,,,,axi4_lite_master,,,,,,,,
