@@ -1,0 +1,33 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+#define GPIOA_CR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x00)
+#define GPIOA_IDR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x04)
+#define GPIOA_ODR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x08)
+
+#define GPIOB_CR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x00)
+#define GPIOB_IDR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x04)
+#define GPIOB_ODR   (XPAR_GPIO_0_S00_AXI_BASEADDR + 0x08)
+
+
+int main()
+{
+	int counter = 0;
+	*(uint32_t *)GPIOA_CR = 0xff;
+	*(uint32_t *)GPIOB_CR = 0x00;
+
+	while(1)
+	{
+		if (!(*(uint32_t *)GPIOB_IDR & (1<<0))){
+		*(uint32_t *)GPIOA_ODR ^= 0xff;
+		xil_printf("hello xilinx : %d\n", counter++);
+		} else {
+
+
+		}
+		usleep(100000);
+	}
+	return 0;
+}

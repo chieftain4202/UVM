@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdx:platform sdx:vendor="xilinx.com"
+              sdx:library="sdx"
+              sdx:name="MicroBlaze_GPIO_design_1_wrapper"
+              sdx:version="1.0"
+              sdx:schemaVersion="1.0"
+              xmlns:sdx="http://www.xilinx.com/sdx">
+    <sdx:description>
+MicroBlaze_GPIO_design_1_wrapper
+    </sdx:description>
+    <sdx:systemConfigurations sdx:defaultConfiguration="MicroBlaze_GPIO_design_1_wrapper">
+        <sdx:configuration sdx:name="MicroBlaze_GPIO_design_1_wrapper"
+                           sdx:displayName="MicroBlaze_GPIO_design_1_wrapper"
+                           sdx:defaultProcessorGroup="standalone_microblaze_0"
+                           sdx:runtimes="cpp">
+            <sdx:description>MicroBlaze_GPIO_design_1_wrapper</sdx:description>
+            <sdx:bootImages sdx:default="standard">
+                <sdx:image sdx:name="standard"
+                            sdx:bif="MicroBlaze_GPIO_design_1_wrapper/boot/MicroBlaze_GPIO_design_1_wrapper.bif"
+                            sdx:readme="MicroBlaze_GPIO_design_1_wrapper/boot/generic.readme"
+                            />
+            </sdx:bootImages>
+            <sdx:processorGroup sdx:name="standalone_microblaze_0"
+                                sdx:displayName="standalone_microblaze_0"
+                                sdx:cpuType="microblaze_0"
+                                sdx:cpuInstance="microblaze_0">
+                <sdx:os sdx:name="standalone"
+                        sdx:displayName="standalone"
+                        sdx:bspLibraryPaths="MicroBlaze_GPIO_design_1_wrapper/standalone_microblaze_0/bsplib/lib"
+                        sdx:bspIncludePaths="MicroBlaze_GPIO_design_1_wrapper/standalone_microblaze_0/bspinclude/include"
+                        sdx:bspConfig="MicroBlaze_GPIO_design_1_wrapper/standalone_microblaze_0/system.mss"
+                />
+            </sdx:processorGroup>
+        </sdx:configuration>
+    </sdx:systemConfigurations>
+</sdx:platform>

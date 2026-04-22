@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module axi4_lite_slave(
+module axi4_lite_slave (
     input  logic        ACLK,
     input  logic        ARESETn,
     // AW channeL
@@ -32,5 +32,26 @@ module axi4_lite_slave(
     input  logic [31:0] wdata,
     input  logic        write,
     output logic [31:0] rdata
-    );
+);
+endmodule
+
+module ram_mem (
+    input  logic        clk,
+    input  logic        we,
+    input  logic [31:0] idata,
+    input  logic [31:0] addr,
+    output logic [31:0] odata
+);
+
+    logic [31:0] mem[0:255];
+
+    always_ff @(posedge clk) begin
+        if (we) begin
+            mem[addr] <= idata[addr];
+        end else begin
+            odata[addr] <= mem[addr];
+        end
+
+    end
+
 endmodule

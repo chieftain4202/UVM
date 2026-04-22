@@ -1,0 +1,15 @@
+timestamp=[2026-04-22 15:02:41], mode=WORKBENCH_START, duration=0:00:06.224, duration_ms=6224, data={}
+timestamp=[2026-04-22 15:02:41], mode=WORKBENCH_UI_INIT, duration=0:00:00.489, duration_ms=489, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2026-04-22 15:02:47], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:05.264, duration_ms=5264, data={}
+timestamp=[2026-04-22 15:07:42], mode=APP_CREATION, duration=0:00:07.700, duration_ms=7700, data={name=hello_gpio, project_type=sdk, os=standalone, processor=microblaze, runtime=cpp, platform=MicroBlaze_GPIO_design_1_wrapper, application_type=application}
+timestamp=[2026-04-22 15:11:29], mode=PLATFORM_GENERATION, duration=0:00:10.707, duration_ms=10707, data={name=MicroBlaze_GPIO_design_1_wrapper}
+timestamp=[2026-04-22 15:11:32], mode=BUILD, duration=0:00:02.699, duration_ms=2699, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:15:12], mode=BUILD, duration=0:00:01.383, duration_ms=1383, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:15:37], mode=BUILD, duration=0:00:00.309, duration_ms=309, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:27:14], mode=BUILD, duration=0:00:01.045, duration_ms=1045, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:32:55], mode=BUILD, duration=0:00:01.084, duration_ms=1084, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:34:01], mode=BUILD, duration=0:00:01.097, duration_ms=1097, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 15:34:33], mode=BUILD, duration=0:00:01.115, duration_ms=1115, data={name=hello_gpio, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:26:00], mode=WORKBENCH_START, duration=0:00:10.445, duration_ms=10445, data={}
+timestamp=[2026-04-22 16:26:01], mode=WORKBENCH_UI_INIT, duration=0:00:00.621, duration_ms=621, data={editors_count=4, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=MicroBlaze_GPIO_design_1_wrapper,RemoteSystemsTempFiles,hello_gpio,hello_gpio_system}
+timestamp=[2026-04-22 16:26:02], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.062, duration_ms=62, data={}

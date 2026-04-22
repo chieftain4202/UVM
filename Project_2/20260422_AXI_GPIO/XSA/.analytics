@@ -1,0 +1,16 @@
+timestamp=[2026-04-22 16:26:41], mode=WORKBENCH_START, duration=0:00:04.878, duration_ms=4878, data={}
+timestamp=[2026-04-22 16:26:41], mode=WORKBENCH_UI_INIT, duration=0:00:00.281, duration_ms=281, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2026-04-22 16:26:45], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.626, duration_ms=2626, data={}
+timestamp=[2026-04-22 16:27:26], mode=APP_CREATION, duration=0:00:05.574, duration_ms=5574, data={name=GPIO_LED, project_type=sdk, os=standalone, processor=microblaze, runtime=cpp, platform=MicroBlaze_GPIO_design_1_wrapper, application_type=application}
+timestamp=[2026-04-22 16:31:39], mode=PLATFORM_GENERATION, duration=0:00:09.395, duration_ms=9395, data={name=MicroBlaze_GPIO_design_1_wrapper}
+timestamp=[2026-04-22 16:31:40], mode=BUILD, duration=0:00:00.691, duration_ms=691, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:33:31], mode=BUILD, duration=0:00:02.669, duration_ms=2669, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:35:02], mode=BUILD, duration=0:00:01.404, duration_ms=1404, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:36:00], mode=BUILD, duration=0:00:02.620, duration_ms=2620, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:36:26], mode=BUILD, duration=0:00:00.989, duration_ms=989, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:36:55], mode=BUILD, duration=0:00:00.873, duration_ms=873, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:40:42], mode=BUILD, duration=0:00:02.019, duration_ms=2019, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:41:44], mode=BUILD, duration=0:00:00.809, duration_ms=809, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:44:01], mode=BUILD, duration=0:00:02.283, duration_ms=2283, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:45:10], mode=BUILD, duration=0:00:00.489, duration_ms=489, data={name=GPIO_LED, configuration=Debug, clean_build=false}
+timestamp=[2026-04-22 16:45:24], mode=BUILD, duration=0:00:01.186, duration_ms=1186, data={name=GPIO_LED, configuration=Debug, clean_build=false}

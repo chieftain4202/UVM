@@ -38,8 +38,6 @@ module tb_axi4_lite ();
     logic [31:0] slv_reg0, slv_reg1, slv_reg2, slv_reg3;
     bit [31:0] slave_addr;
     bit slv_addr_flag;
-    bit [31:0] rd_slave_addr;
-    bit rd_addr_valid;
 
     axi4_lite_master dut (.*);
 
@@ -108,15 +106,16 @@ module tb_axi4_lite ();
         forever begin
             @(posedge ACLK);
             if (ARVALID & !ARREADY) begin
-                rd_slave_addr = ARADDR;
-                rd_addr_valid = 1'b1;
+                slave_addr = ARADDR;
                 ARREADY = 1'b1;
                 
-                $display("[%0t] SLAVE READ ADDR %0h", $time, rd_slave_addr);
+                $display("[%0t] SLAVE READ ADDR %0h", $time, slave_addr);
             end else if (ARVALID & ARREADY) begin
                 ARREADY = 1'b0;
+                slv_addr_flag = 1;
             end else begin
                 ARREADY = 1'b0;
+                slv_addr_flag = 0;
             end
         end
     endtask
@@ -125,8 +124,9 @@ module tb_axi4_lite ();
         // R channeL
         forever begin
             @(posedge ACLK);
-            if (!RVALID & rd_addr_valid) begin
-                case (rd_slave_addr[3:2])
+            if (!RVALID & RREADY) begin
+                wait (slv_addr_flag);
+                case (slave_addr[3:2])
                     2'h0: RDATA = slv_reg0;
                     2'h1: RDATA = slv_reg1;
                     2'h2: RDATA = slv_reg2;
@@ -134,9 +134,8 @@ module tb_axi4_lite ();
                 endcase
                 RVALID = 1'b1;
                 RRESP  = 2'b00;
-                rd_addr_valid = 1'b0;
                 $display("[%0t] SLAVE READ ADDR %0h, RDATA = %0h", $time,
-                         rd_slave_addr, RDATA);
+                         slave_addr, RDATA);
             end else if (RVALID & RREADY) begin
                 RVALID = 1'b0;
             end else begin
@@ -157,7 +156,6 @@ module tb_axi4_lite ();
         @(posedge ACLK);
         transfer <= 1'b0;
         do @(posedge ACLK); while (!ready);
-        write <= 1'b0;
         $display("[%0t] CPU WRITE ADDR %0h, WDATA = %0h", $time, addr,
                  wdata);
     endtask
@@ -176,26 +174,6 @@ module tb_axi4_lite ();
     initial begin
         ACLK = 0;
         ARESETn = 0;
-        AWREADY = 0;
-        WREADY = 0;
-        BRESP = 0;
-        BVALID = 0;
-        ARREADY = 0;
-        RDATA = 0;
-        RVALID = 0;
-        RRESP = 0;
-        transfer = 0;
-        write = 0;
-        addr = 0;
-        wdata = 0;
-        slave_addr = 0;
-        slv_addr_flag = 0;
-        rd_slave_addr = 0;
-        rd_addr_valid = 0;
-        slv_reg0 = 0;
-        slv_reg1 = 0;
-        slv_reg2 = 0;
-        slv_reg3 = 0;
         repeat (3) @(posedge ACLK);
         ARESETn = 1;
         repeat (3) @(posedge ACLK);
