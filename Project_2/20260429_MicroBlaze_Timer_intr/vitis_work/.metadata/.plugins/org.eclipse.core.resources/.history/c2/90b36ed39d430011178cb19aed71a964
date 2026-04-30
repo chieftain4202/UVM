@@ -1,0 +1,186 @@
+/*
+ * ap_main.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+#include "xparameters.h"
+#include "xintc.h"
+#include "xil_exception.h"
+#include "xil_printf.h"
+
+#include "ap_main.h"
+#include "../Driver/FND/fnd.h"
+#include "../common/common.h"
+#include "UpCounter/UpCounter.h"
+#include "Clock/Clock.h"
+
+#define INTC_DEV_ID XPAR_INTC_0_DEVICE_ID
+#define TMR1_DEV_ID XPAR_TMR_1_DEVICE_ID
+#define TMR2_DEV_ID XPAR_TMR_2_DEVICE_ID
+
+typedef struct {
+	uint32_t CR;
+	uint32_t PSC;
+	uint32_t ARR;
+	uint32_t ANt;
+}TMR_Typedef_t;
+
+#define TMR1_BASEADDR XPAR_TMR_1_S00_AXI_BASEADDR
+#define TMR2_BASEADDR XPAR_TMR_2_S00_AXI_BASEADDR
+
+#define TMR1_CR 	*(uint32_t *)(TMR1_BASEADDR + 0x00)
+#define TMR1_PSC 	*(uint32_t *)(TMR1_BASEADDR + 0x04)
+#define TMR1_ARR 	*(uint32_t *)(TMR1_BASEADDR + 0x08)
+#define TMR1_CNt 	*(uint32_t *)(TMR1_BASEADDR + 0x0c)
+
+#define TMR2_CR 	*(uint32_t *)(TMR2_BASEADDR + 0x00)
+#define TMR2_PSC 	*(uint32_t *)(TMR2_BASEADDR + 0x04)
+#define TMR2_ARR 	*(uint32_t *)(TMR2_BASEADDR + 0x08)
+#define TMR2_CNt 	*(uint32_t *)(TMR2_BASEADDR + 0x0c)
+
+#define TMR1	((TMR_Typedef_t *)(TMR1_BASEADDR))
+#define TMR2 	((TMR_Typedef_t *)(TMR2_BASEADDR))
+
+#define TMR_ENABLE_BIT 0
+#define TMR_CLEAR_BIT 1
+#define TMR_INTR_BIT 2
+
+
+
+void TMR_SetPSC(TMR_Typedef_t *TMRx, uint32_t psc){
+	TMR1->PSC = psc;
+}
+
+void TMR_SetARR(TMR_Typedef_t *TMRx, uint32_t arr){
+	TMR1->ARR= arr;
+}
+
+void TMR_StartIntr(TMR_Typedef_t *TMRx){
+	TMRx->CR |= 1 << TMR_INTR_BIT;
+}
+
+void TMR_StopIntr(TMR_Typedef_t *TMRx){
+	TMRx->CR |= ~(1 << TMR_INTR_BIT);
+}
+
+
+void TMR_StartTimer(TMR_Typedef_t *TMRx){
+	TMRx->CR |= 1 << TMR_ENABLE_BIT;
+}
+
+void TMR_StopTimer(TMR_Typedef_t *TMRx){
+	TMRx->CR &= ~(1 << TMR_ENABLE_BIT);
+}
+
+void TMR_ClearTimer(TMR_Typedef_t *TMRx){
+	TMRx->CR |= 1 << TMR_ENABLE_BIT;
+	TMRx->CR &= ~(1 << TMR_ENABLE_BIT);
+}
+
+
+XIntc IntrController;
+
+
+
+void TMR1_ISR(void *CallbackRef) {
+	xil_printf("1sec  TIMER 1 ISR!\n");
+}
+
+void TMR2_ISR(void *CallbackRef) {
+	xil_printf("2sec	TIMER 2 ISR!\n");
+}
+
+int SetupInterruptSystem() {
+	int status;
+
+	// 1.인터럽트 컨트롤러 초기화
+	status = XIntc_Initialize(&IntrController, INTC_DEV_ID);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	// 2-1. TMR1_ISR 함수를 Intc와 연결
+	status = XIntc_Connect(&IntrController, TMR1_DEV_ID,
+			(XInterruptHandler) TMR1_ISR, (void *) 0);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	// 2-1. TMR1_ISR 함수를 Intc와 연결
+	status = XIntc_Connect(&IntrController, TMR2_DEV_ID,
+			(XInterruptHandler) TMR2_ISR, (void *) 0);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	// 3.Interrupt Controller 시작 (Hardware Mode)
+	status = XIntc_Start(&IntrController, XIN_REAL_MODE);
+	if (status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	// 4. 각각의 인터럽트 채널 활성화
+	XIntc_Enable(&IntrController, TMR1_DEV_ID);
+	XIntc_Enable(&IntrController, TMR2_DEV_ID);
+
+	// 5. MicroBlaze 의 Exception 초기화 및 활성화
+	Xil_ExceptionInit();
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+			(Xil_ExceptionHandler) XIntc_InterruptHandler, &IntrController);
+	Xil_ExceptionEnable();
+
+	return XST_SUCCESS;
+
+}
+
+hBtn_t hBtnMode;
+
+void ap_init() {
+	UpCounter_Init();
+	SetupInterruptSystem();
+
+	TMR1->PSC = 100 - 1; // 1MHz tick
+	TMR1->ARR = 1000000 -1; // 1sec
+	TMR1->CR |= 1 << 2; // TMR_intr_en
+	TMR1->CR |= 1 << 0; //TMR_enable
+
+	TMR2->PSC = 100 - 1; // 1MHz tick
+	TMR2->ARR = 2000000 -1; // 1sec
+	TMR2->CR |= 1 << 2; // TMR_intr_en
+	TMR2->CR |= 1 << 0; //TMR_enable
+
+
+	Clock_Init();
+	Button_Init(&hBtnMode, GPIOA, GPIO_PIN_5);
+}
+
+void ap_excute() {
+	static mode_state_t ModeState = counter;
+
+	while (1) {
+		Clock_Run();      // 항상 실행
+		millis_inc();     // 항상 실행
+		delay_ms(1);      // 항상 실행
+
+		if (Button_GetState(&hBtnMode) == ACT_PUSHED) {
+			if (ModeState == counter) {
+				ModeState = clock;
+			} else {
+				ModeState = counter;
+			}
+		}
+
+		switch (ModeState) {
+		case counter:
+			UpCounter_Excute();
+			break;
+
+		case clock:
+			Clock_Excute();
+			break;
+		}
+
+	}
+}
+

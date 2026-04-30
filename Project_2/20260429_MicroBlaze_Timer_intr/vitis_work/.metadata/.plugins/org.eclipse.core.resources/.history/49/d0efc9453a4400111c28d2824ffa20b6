@@ -1,0 +1,75 @@
+#include "TimeClock.h"
+
+typedef struct {
+	uint8_t hh;
+	uint8_t mm;
+	uint8_t ss;
+	uint8_t ms;
+
+} timeClock_t;
+
+timeClock_t timeClock;
+
+void TimeClock_Init() {
+
+}
+
+void TimeClock_Excute() {
+
+	millis_inc();
+	TimeClock_DispTime();
+}
+
+void TimeClock_IncTime() {
+
+	if (timeClock.msec < 100 - 1) {
+		timeClock.msec++;
+		return;
+	}
+	timeClock.msec = 0;
+
+	if (timeClock.sec < 60 - 1) {
+		timeClock.sec++;
+		return;
+	}
+	timeClock.sec = 0;
+
+	if (timeClock.min < 60 - 1) {
+		timeClock.min++;
+		return;
+	}
+	timeClock.min = 0;
+
+	if (timeClock.hour < 24 - 1) {
+		timeClock.hour++;
+		return;
+	}
+	timeClock.hour = 0;
+
+}
+
+void TimeClock_DispTime() {
+	TimeClock_DispHourMin();
+	TimeClock_DispSecMsec();
+
+}
+
+void TimeClock_DispHourMin() {
+
+	uint16_t timeNumH;
+
+	timeNumH = timeClock.hour * 100 + timeClock.min;
+
+	FND_SetNum(num);
+}
+
+void TimeClock_DispSecMsec() {
+
+	uint16_t timeNumL;
+
+	timeNumL = timeClock.sec * 100 + timeClock.msec;
+
+	FND_SetNum(num);
+
+}
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_TimerCounter_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_TimerCounter" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="100428334fs"></ZoomStartTime>
+      <ZoomEndTime time="1322428335fs"></ZoomEndTime>
+      <Cursor1Time time="304095000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="158"></NameColumnWidth>
+      <ValueColumnWidth column_width="67"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/tb_TimerCounter/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/cnt_en" type="logic">
+      <obj_property name="ElementShortName">cnt_en</obj_property>
+      <obj_property name="ObjectShortName">cnt_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/cnt_clear" type="logic">
+      <obj_property name="ElementShortName">cnt_clear</obj_property>
+      <obj_property name="ObjectShortName">cnt_clear</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/intr_en" type="logic">
+      <obj_property name="ElementShortName">intr_en</obj_property>
+      <obj_property name="ObjectShortName">intr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/PSC" type="array">
+      <obj_property name="ElementShortName">PSC[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PSC[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/ARR" type="array">
+      <obj_property name="ElementShortName">ARR[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ARR[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/intr" type="logic">
+      <obj_property name="ElementShortName">intr</obj_property>
+      <obj_property name="ObjectShortName">intr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/count" type="array">
+      <obj_property name="ElementShortName">count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">count[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/dut/tick" type="logic">
+      <obj_property name="ElementShortName">tick</obj_property>
+      <obj_property name="ObjectShortName">tick</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_TimerCounter/dut/c_intr" type="logic">
+      <obj_property name="ElementShortName">c_intr</obj_property>
+      <obj_property name="ObjectShortName">c_intr</obj_property>
+   </wvobject>
+</wave_config>

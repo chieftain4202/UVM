@@ -1,0 +1,75 @@
+/*
+ * ap_main.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+#include "xparameters.h"
+#include "xintc.h"
+#include "xil_exception.h"
+#include "xil_printf.h"
+
+#include "ap_main.h"
+#include "interrupt.h"
+#include "../Driver/FND/fnd.h"
+#include "../common/common.h"
+#include "UpCounter/UpCounter.h"
+#include "Clock/Clock.h"
+#include "../HAL/TMR/TMR.h"
+
+hBtn_t hBtnMode;
+
+void ap_init() {
+	UpCounter_Init();
+	SetupInterruptSystem();
+
+	TMR_SetPSC(TMR1, 100 - 1);
+	TMR_SetARR(TMR1, 0xffffffff);
+	TMR_StopIntr(TMR0);
+	TMR_StartTimer(TMR0);
+
+	// 1khz -> 1ms
+	TMR_SetPSC(TMR1, 100 - 1);
+	TMR_SetARR(TMR1, 1000 - 1);
+	TMR_StartIntr(TMR1);
+	TMR_StartTimer(TMR1);
+
+	// 100khz -> 10ms
+	TMR_SetPSC(TMR2, 100 - 1);
+	TMR_SetARR(TMR2, 10000 - 1);
+	TMR_StartIntr(TMR2);
+	TMR_StartTimer(TMR2);
+
+	Clock_Init();
+	Button_Init(&hBtnMode, GPIOA, GPIO_PIN_5);
+}
+
+void ap_excute() {
+	static mode_state_t ModeState = counter;
+
+	while (1) {
+		Clock_Run();      // 항상 실행
+		    // 항상 실행
+		delay_ms(1);      // 항상 실행
+
+		if (Button_GetState(&hBtnMode) == ACT_PUSHED) {
+			if (ModeState == counter) {
+				ModeState = clock;
+			} else {
+				ModeState = counter;
+			}
+		}
+
+		switch (ModeState) {
+		case counter:
+			UpCounter_Excute();
+			break;
+
+		case clock:
+			Clock_Excute();
+			break;
+		}
+
+	}
+}
+

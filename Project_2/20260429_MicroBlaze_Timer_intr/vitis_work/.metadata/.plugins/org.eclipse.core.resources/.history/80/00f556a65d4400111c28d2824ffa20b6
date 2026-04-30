@@ -1,0 +1,53 @@
+#include "led.h"
+
+#define GPIO_LED_PIN GPIOC
+
+#define LED_PIN_0 GPIO_PIN_0
+#define LED_PIN_1 GPIO_PIN_1
+#define LED_PIN_2 GPIO_PIN_2
+#define LED_PIN_3 GPIO_PIN_3
+#define LED_PIN_4 GPIO_PIN_4
+#define LED_PIN_5 GPIO_PIN_5
+#define LED_PIN_6 GPIO_PIN_6
+#define LED_PIN_7 GPIO_PIN_7
+
+void led_init() {
+	GPIO_SetMode(GPIOC,
+			LED_PIN_0 | LED_PIN_1 | LED_PIN_2 | LED_PIN_3 | LED_PIN_4
+					| LED_PIN_5 | LED_PIN_6 | LED_PIN_7, OUTPUT);
+}
+
+void led_run() {
+
+}
+
+void led_mode() {
+	if (mode_counter) {
+		GPIO_WritePort(LED_PIN_7, 0x08);
+	}
+	if (mode_clock) {
+		GPIO_WritePort(LED_PIN_6, 0x04);
+	}
+}
+
+void led_hh_ss() {
+	if (clock_disp_hour) {
+		GPIO_WritePort(LED_PIN_5, 0x02);
+	} else {
+		GPIO_WritePort(LED_PIN_6, 0x04);
+	}
+}
+
+void led_Upcount_Shift() {
+	if(msec){
+
+	}
+}
+
+void led_Clock_Shift() {
+
+}
+
+void led_drive() {
+
+}

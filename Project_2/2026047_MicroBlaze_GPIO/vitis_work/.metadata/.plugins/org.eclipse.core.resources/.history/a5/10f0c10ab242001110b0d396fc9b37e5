@@ -1,0 +1,14 @@
+/*
+ * common.h
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+
+#ifndef SRC_COMMON_COMMON_H_
+#define SRC_COMMON_COMMON_H_
+
+uint32_t millis()
+void millis_inc()
+
+#endif /* SRC_COMMON_COMMON_H_ */

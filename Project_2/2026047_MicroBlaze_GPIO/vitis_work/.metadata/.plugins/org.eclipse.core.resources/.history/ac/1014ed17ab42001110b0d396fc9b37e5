@@ -1,0 +1,151 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+#include "HAL/GPIO/GPIO.h"
+
+#define FND_FONT_PORT GPIOB
+#define FND_COM_PORT GPIOA
+
+#define FND_COM_DIG_1 GPIO_PIN_0
+#define FND_COM_DIG_2 GPIO_PIN_1
+#define FND_COM_DIG_3 GPIO_PIN_2
+#define FND_COM_DIG_4 GPIO_PIN_3
+
+#define SEG_PIN_A GPIO_PIN_0
+#define SEG_PIN_B GPIO_PIN_1
+#define SEG_PIN_C GPIO_PIN_2
+#define SEG_PIN_D GPIO_PIN_3
+#define SEG_PIN_E GPIO_PIN_4
+#define SEG_PIN_F GPIO_PIN_5
+#define SEG_PIN_G GPIO_PIN_6
+#define SEG_PIN_DP GPIO_PIN_7
+
+uint8_t fndNumData = 0;
+
+void FND_SetComPort(GPIO_Typedef_t *FND_Port, uint32_t Seg_Pin, int OnOFF) {
+
+	GPIO_WritePin(FND_Port, Seg_Port, OnOff);
+}
+
+void FND_DispDigit()
+{
+	static uint8_t fndDigState = 0;
+	fndDigitState = (fndDigitState + 1) % 4;
+
+	switch(fndDigitState)
+	{
+	case 0 : FND_DispDigit_1();I
+		break;
+	case 1 : FND_DispDigit_10();
+		break;
+	case 2 : FND_DispDigit_100();
+		break;
+	case 3 : FND_DispDigit_1000();
+		break;
+	default:
+		FND_DispDigit_1();
+		break;
+	}
+}
+
+void FND_Init() {
+	// GPIO 설정, GPIOA0,1,2,3 COM 연결
+	GPIO_SetMode(GPIOA,
+	FND_COM_DIG_1 | FND_COM_DIG_2 | FND_COM_DIG_3 | FND_COM_DIG_4,
+	OUTPUT);
+	// GPIO 설정, GPIOB seg
+	GPIO_SetMode(GPIOB, SEG_PIN_A | SEG_PIN_B | SEG_PIN_C | SEG_PIN_D,
+	OUTPUT);
+	GPIO_SetMode(GPIOB, SEG_PIN_E | SEG_PIN_F | SEG_PIN_G | SEG_PIN_DP,
+	OUTPUT);
+}
+
+void FND_DispDigit_1() {
+	uint8_t fndFont[16] = { 0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8,
+			0x80, 0x90, 0x88, 0x83, 0xc6, 0xa1, 0x86, 0x8e };
+	//num 자리수 분리
+	uint8_t digitData1 = fndNumData % 10;
+	FND_SetComPort(FND_COM_PORT,
+	FND_COM_DIG_1 | FND_COM_DIG_2 | FND_COM_DIG_3 | FND_COM_DIG_4, OFF);
+	GPIO_WritePort(FND_FONT_PORT, digitData1);
+	FND_SetComPort(FND_COM_PORT, FND_COM_DIG_1, ON);
+}
+
+void FND_DispDigit_10() {
+	uint8_t fndFont[16] = { 0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8,
+			0x80, 0x90, 0x88, 0x83, 0xc6, 0xa1, 0x86, 0x8e };
+	//num 자리수 분리
+	uint8_t digitData10 = fndNumData / 10 % 10;
+	FND_SetComPort(FND_COM_PORT,
+	FND_COM_DIG_1 | FND_COM_DIG_2 | FND_COM_DIG_3 | FND_COM_DIG_4, OFF);
+	GPIO_WritePort(FND_FONT_PORT, digitData10);
+	FND_SetComPort(FND_COM_PORT, FND_COM_DIG_2, ON);
+}
+
+void FND_DispDigit_100() {
+	uint8_t fndFont[16] = { 0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8,
+			0x80, 0x90, 0x88, 0x83, 0xc6, 0xa1, 0x86, 0x8e };
+	uint8_t digitData100 = fndNumData / 100 % 10;
+	FND_SetComPort(FND_COM_PORT,
+	FND_COM_DIG_1 | FND_COM_DIG_2 | FND_COM_DIG_3 | FND_COM_DIG_4, OFF);
+	GPIO_WritePort(FND_FONT_PORT, digitData100);
+	FND_SetComPort(FND_COM_PORT, FND_COM_DIG_3, ON);
+}
+
+void FND_DispDigit_1000() {
+	uint8_t fndFont[16] = { 0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8,
+			0x80, 0x90, 0x88, 0x83, 0xc6, 0xa1, 0x86, 0x8e };
+	uint8_t digitData1000 = fndNumData / 1000 % 10;
+	FND_SetComPort(FND_COM_PORT,
+	FND_COM_DIG_1 | FND_COM_DIG_2 | FND_COM_DIG_3 | FND_COM_DIG_4, OFF);
+	GPIO_WritePort(FND_FONT_PORT, digitData1000);
+	FND_SetComPort(FND_COM_PORT, FND_COM_DIG_4, ON);
+}
+
+void FND_SetNum() {
+
+}
+
+void FND_DispOn() {
+
+}
+
+void FND_DispOff() {
+
+}
+
+int main() {
+	// GPIOA_CR = 0x0f;
+	// GPIOB_CR = 0xff;
+	GPIOA->CR = 0x0f;
+	GPIOB->CR = 0xff;
+
+	GPIO_SetMode(GPIOA, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3,
+	OUTPUT);
+	GPIO_SetMode(GPIOA, GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7,
+	INPUT);
+	GPIO_SetMode(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3,
+	OUTPUT);
+	GPIO_SetMode(GPIOB, GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7,
+	OUTPUT);
+
+	while (1) {
+
+		GPIO_WritePort(GPIOB, 0x00);
+		if (GPIO_ReadPin(GPIOA, GPIO_PIN_4)) {
+			GPIO_WritePin(GPIOA, GPIO_PIN_0, RESET);
+		} else if (GPIO_ReadPin(GPIOA, GPIO_PIN_5)) {
+			GPIO_WritePin(GPIOA, GPIO_PIN_1, RESET);
+		} else if (GPIO_ReadPin(GPIOA, GPIO_PIN_6)) {
+			GPIO_WritePin(GPIOA, GPIO_PIN_2, RESET);
+		} else if (GPIO_ReadPin(GPIOA, GPIO_PIN_7)) {
+			GPIO_WritePin(GPIOA, GPIO_PIN_3, RESET);
+		} else {
+			GPIO_WritePin(GPIOA,
+			GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3, SET);
+		}
+	}
+
+	return 0;
+}

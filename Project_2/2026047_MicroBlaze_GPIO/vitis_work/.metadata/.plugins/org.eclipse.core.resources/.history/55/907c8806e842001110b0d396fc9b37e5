@@ -1,0 +1,53 @@
+/*
+ * ap_main.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+
+#include "ap_main.h"
+#include "../Driver/FND/fnd.h"
+#include "../common/common.h"
+#include "UpCounter/UpCounter.h"
+#include "Clock/Clock.h"
+
+typedef enum {
+	counter, clock,
+} mode_state_t;
+
+hBtn_t hBtnMode;
+
+void ap_init() {
+	UpCounter_Init();
+	Clock_Init();
+	Button_Init(&hBtnMode, GPIOA, GPIO_PIN_5);
+}
+
+void ap_excute() {
+	Clock_Run();
+	static mode_state_t ModeState = counter;
+	switch (ModeState) {
+
+	case counter:
+		while (1) {
+			UpCounter_Excute();
+			millis_inc();
+			delay_ms(1);
+			if (Button_GetState(&hBtnMode) == ACT_PUSHED) {
+				ModeState = clock;
+				break;
+			}
+		}
+
+	case clock:
+		while (1) {
+			Clock_Excute();
+			millis_inc();
+			delay_ms(1);
+			if (Button_GetState(&hBtnMode) == ACT_PUSHED) {
+				ModeState = counter;
+				break;
+			}
+		}
+	}
+}

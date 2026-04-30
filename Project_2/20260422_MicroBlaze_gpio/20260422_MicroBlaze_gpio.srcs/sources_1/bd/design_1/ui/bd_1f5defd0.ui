@@ -1,52 +1,52 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.510691",
-   "Default View_TopLeft":"-112,-251",
+   "Default View_ScaleFactor":"0.82962",
+   "Default View_TopLeft":"939,-59",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
 #  -string -flagsOSRD
 preplace port usb_uart -pg 1 -lvl 6 -x 1740 -y 630 -defaultsOSRD
-preplace port sys_clock -pg 1 -lvl 0 -x 0 -y 470 -defaultsOSRD
-preplace port reset -pg 1 -lvl 0 -x 0 -y 390 -defaultsOSRD
+preplace port sys_clock -pg 1 -lvl 0 -x -10 -y 470 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x -10 -y 390 -defaultsOSRD
 preplace portBus btn -pg 1 -lvl 6 -x 1740 -y 80 -defaultsOSRD
 preplace portBus fnd_digit -pg 1 -lvl 6 -x 1740 -y 500 -defaultsOSRD
 preplace portBus fnd_data_low -pg 1 -lvl 6 -x 1740 -y 360 -defaultsOSRD
 preplace portBus fnd_data_high -pg 1 -lvl 6 -x 1740 -y 220 -defaultsOSRD
 preplace inst microblaze_0 -pg 1 -lvl 3 -x 840 -y 590 -defaultsOSRD
 preplace inst microblaze_0_local_memory -pg 1 -lvl 4 -x 1260 -y 600 -defaultsOSRD
-preplace inst mdm_1 -pg 1 -lvl 2 -x 390 -y 590 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 2 -x 400 -y 590 -defaultsOSRD
 preplace inst clk_wiz_1 -pg 1 -lvl 1 -x 110 -y 460 -defaultsOSRD
-preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 2 -x 390 -y 410 -defaultsOSRD
+preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 2 -x 400 -y 410 -defaultsOSRD
 preplace inst axi_uartlite_0 -pg 1 -lvl 5 -x 1590 -y 640 -defaultsOSRD
 preplace inst microblaze_0_axi_periph -pg 1 -lvl 4 -x 1260 -y 300 -defaultsOSRD
 preplace inst GPIO_0 -pg 1 -lvl 5 -x 1590 -y 80 -defaultsOSRD
 preplace inst GPIO_1 -pg 1 -lvl 5 -x 1590 -y 500 -defaultsOSRD
 preplace inst GPIO_2 -pg 1 -lvl 5 -x 1590 -y 220 -defaultsOSRD
 preplace inst GPIO_3 -pg 1 -lvl 5 -x 1590 -y 360 -defaultsOSRD
-preplace netloc microblaze_0_Clk 1 1 4 200 510 580 500 1110 90 1460
-preplace netloc clk_wiz_1_locked 1 1 1 210 450n
-preplace netloc rst_clk_wiz_1_100M_mb_reset 1 2 1 570 370n
-preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 2 2 N 390 1080J
-preplace netloc mdm_1_debug_sys_rst 1 1 2 220 520 560
+preplace netloc microblaze_0_Clk 1 1 4 210 510 590 500 1100 90 1450
+preplace netloc clk_wiz_1_locked 1 1 1 220 450n
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 2 1 580 370n
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 2 2 N 390 1070J
+preplace netloc mdm_1_debug_sys_rst 1 1 2 230 520 570
 preplace netloc sys_clock_1 1 0 1 NJ 470
-preplace netloc reset_1 1 0 2 20 390 NJ
-preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 2 3 NJ 450 1100 100 1420
+preplace netloc reset_1 1 0 2 10 390 NJ
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 2 3 NJ 450 1090 100 1410
 preplace netloc Net 1 5 1 NJ 80
 preplace netloc Net1 1 5 1 NJ 500
 preplace netloc Net2 1 5 1 NJ 360
 preplace netloc Net3 1 5 1 NJ 220
-preplace netloc microblaze_0_dlmb_1 1 3 1 N 570
-preplace netloc microblaze_0_ilmb_1 1 3 1 N 590
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 4 1 1420 300n
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 4 1 1440 200n
 preplace netloc microblaze_0_debug 1 2 1 N 580
-preplace netloc microblaze_0_M_AXI_DP 1 3 1 1090 160n
-preplace netloc microblaze_0_axi_periph_M00_AXI 1 4 1 1440 260n
-preplace netloc axi_uartlite_0_UART 1 5 1 NJ 630
-preplace netloc microblaze_0_axi_periph_M01_AXI 1 4 1 1410 60n
-preplace netloc microblaze_0_axi_periph_M02_AXI 1 4 1 1430 300n
-preplace netloc microblaze_0_axi_periph_M03_AXI 1 4 1 1450 200n
+preplace netloc microblaze_0_dlmb_1 1 3 1 N 570
 preplace netloc microblaze_0_axi_periph_M04_AXI 1 4 1 N 340
-levelinfo -pg 1 0 110 390 840 1260 1590 1740
-pagesize -pg 1 -db -bbox -sgen -120 0 1910 720
+preplace netloc microblaze_0_M_AXI_DP 1 3 1 1080 160n
+preplace netloc axi_uartlite_0_UART 1 5 1 NJ 630
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 4 1 1400 60n
+preplace netloc microblaze_0_axi_periph_M00_AXI 1 4 1 1430 260n
+preplace netloc microblaze_0_ilmb_1 1 3 1 N 590
+levelinfo -pg 1 -10 110 400 840 1260 1590 1740
+pagesize -pg 1 -db -bbox -sgen -130 0 1920 720
 "
 }
 {
