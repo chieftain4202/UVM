@@ -1,0 +1,33 @@
+/*
+ * ap_main.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+
+#include "ap_main.h"
+#include "../Driver/FND/fnd.h"
+#include "../common/common.h"
+#include "UpCounter/UpCounter.h"
+#include "Clock/Clock.h"
+
+void ap_init() {
+	UpCounter_Init();
+	Clock_Init();
+	Button_Init(&hBtnMode, GPIOA, GPIO_PIN_5);
+}
+
+void ap_excute() {
+	if() {
+	while (1) {
+		UpCounter_Excute();
+		millis_inc();
+		delay_ms(1);
+	}
+	while (1) {
+		Clock_Excute();
+		millis_inc();
+		delay_ms(1);
+	}
+}
+}

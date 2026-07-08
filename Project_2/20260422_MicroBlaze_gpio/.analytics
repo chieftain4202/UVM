@@ -1,0 +1,7 @@
+timestamp=[2026-04-27 10:24:37], mode=WORKBENCH_START, duration=0:00:06.860, duration_ms=6860, data={}
+timestamp=[2026-04-27 10:24:37], mode=WORKBENCH_UI_INIT, duration=0:00:00.530, duration_ms=530, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2026-04-27 10:24:42], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:04.019, duration_ms=4019, data={}
+timestamp=[2026-04-27 10:34:45], mode=WORKBENCH_START, duration=0:00:03.884, duration_ms=3884, data={}
+timestamp=[2026-04-27 10:34:46], mode=WORKBENCH_UI_INIT, duration=0:00:00.584, duration_ms=584, data={editors_count=0, platform_editors_count=0, projects_count=1, platform_projects_count=0, active_platform_editor=false, projects=RemoteSystemsTempFiles}
+timestamp=[2026-04-27 10:34:48], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.204, duration_ms=2204, data={}
+timestamp=[2026-04-27 10:35:27], mode=APP_CREATION, duration=0:00:06.453, duration_ms=6453, data={name=fndcounter, project_type=sdk, os=standalone, processor=microblaze, runtime=cpp, platform=design_1_wrapper, application_type=application}

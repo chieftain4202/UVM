@@ -1,0 +1,74 @@
+
+#include "GPIO.h"
+
+typedef struct {
+    uint32_t CR;
+    uint32_t IDR;
+    uint32_t ODR;
+} GPIO_Typedef_t;
+
+#define GPIOA_BASE_ADDR 0x44A00000
+#define GPIOB_BASE_ADDR 0x44A10000
+
+#define GPIOA_CR   (*(uint32_t *)(GPIOA_BASE_ADDR + 0x00))
+#define GPIOA_IDR  (*(uint32_t *)(GPIOA_BASE_ADDR + 0x04))
+#define GPIOA_ODR  (*(uint32_t *)(GPIOA_BASE_ADDR + 0x08))
+
+#define GPIOB_CR   (*(uint32_t *)(GPIOB_BASE_ADDR + 0x00))
+#define GPIOB_IDR  (*(uint32_t *)(GPIOB_BASE_ADDR + 0x04))
+#define GPIOB_ODR  (*(uint32_t *)(GPIOB_BASE_ADDR + 0x08))
+
+#define GPIOA ((GPIO_Typedef_t *)(GPIOA_BASE_ADDR))
+#define GPIOB ((GPIO_Typedef_t *)(GPIOB_BASE_ADDR))
+
+#define GPIO_PIN_0 0x01
+#define GPIO_PIN_1 0x02
+#define GPIO_PIN_2 0x04
+#define GPIO_PIN_3 0x08
+#define GPIO_PIN_4 0x10
+#define GPIO_PIN_5 0x20
+#define GPIO_PIN_6 0x40
+#define GPIO_PIN_7 0x80
+
+#define INPUT 	0x00
+#define OUTPUT	0x01
+
+#define RESET 	0
+#define SET 	1
+
+void GPIO_SetMode (GPIO_Typedef_t *GPIOx, uint32_t GPIO_Pin, int GPIO_Dir)
+    {
+       if (GPIO_Dir == OUTPUT){
+    	   GPIOx->CR |= GPIO_Pin;
+       } else {
+       	GPIOx->CR &= ~(GPIO_Pin);
+       }
+
+    }
+uint32_t GPIO_ReadPin(GPIO_Typedef_t *GPIOx, uint32_t GPIO_Pin)
+{
+	return (GPIOx->IDR & GPIO_Pin)? 1 : 0;
+
+
+}
+
+void GPIO_WritePin(GPIO_TypeDef *GPIOx, uint32_t pin, GPIO_PinState state)
+{
+    if (level == SET) {
+        GPIOx->ODR |= GPIO_Pin;
+    } else {
+        GPIOx->ODR &= ~GPIO_Pin;
+    }
+}
+
+void GPIO_WritePort (GPIO_Typedef_t *GPIOx, uint32_t GPIO_Pin, int data)
+{
+	GPIOx->ODR = data;
+}
+
+uint32_t GPIO_ReadPort (GPIO_Typedef_t *GPIOx)
+{
+	return GPIOx->IDR;
+}
+
+

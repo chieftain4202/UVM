@@ -1,0 +1,19 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+#include "HAL/GPIO/GPIO.h"
+#include "Driver/FND/fnd.h"
+
+
+
+int main() {
+
+	FND_Init();
+
+	while (1) {
+
+	}
+
+	return 0;
+}

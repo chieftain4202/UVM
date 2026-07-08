@@ -1,0 +1,8 @@
+
+#ifndef SRC_AP_UPCOUNTER_UPCOUNTER_H_
+#define SRC_AP_UPCOUNTER_UPCOUNTER_H_
+
+void UpCounter_Init();
+void UpCounter_Excute();
+
+#endif /* SRC_AP_UPCOUNTER_UPCOUNTER_H_ */

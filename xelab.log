@@ -1,0 +1,9 @@
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe work.SPI_Master_v1_0 -debug typical 
+Multi-threading is on. Using 14 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+ERROR: [VRFC 10-3180] cannot find port 'rst' on this module [D:/UVM/Project_2/ip_repo/SPI_Master_1.0/hdl/SPI_Master_v1_0.v:62]
+ERROR: [VRFC 10-3180] cannot find port 'clk' on this module [D:/UVM/Project_2/ip_repo/SPI_Master_1.0/hdl/SPI_Master_v1_0.v:61]
+ERROR: [XSIM 43-3322] Static elaboration of top level Verilog design unit(s) in library work failed.

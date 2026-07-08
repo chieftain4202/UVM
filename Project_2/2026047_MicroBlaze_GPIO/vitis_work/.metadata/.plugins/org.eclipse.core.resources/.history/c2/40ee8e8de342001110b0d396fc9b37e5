@@ -1,0 +1,58 @@
+/*
+ * Clock.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+#include "Clock.h"
+
+typedef struct {
+	uint8_t hour;
+	uint8_t min;
+	uint8_t sec;
+	uint32_t msec;
+} clock_t;
+
+int clockdoton;
+hBtn_t hBtnHour, hBtnSec;
+
+static clock_t clockData;
+
+void Clock_Init() {
+	FND_Init();
+}
+
+void Clock_Run() {
+	FND_DispDigit();
+
+	if (clockData.hour == 24) {
+		clockData.hour = 0;
+	} else if (clockData.min == 60) {
+		clockData.min = 0;
+		clockData.hour = clockData.hour + 1;
+	} else if (clockData.sec == 60) {
+		clockData.sec = 0;
+		clockData.min = clockData.min + 1;
+	}
+
+/*	if (millis() - clockData.msec < 1000 - 1) {
+		if (clockData.msec > 500) {
+		    FND_DotPoint(1);
+		} else {
+		    FND_DotPoint(0);
+		}
+
+		return;
+	}*/
+
+
+	clockData.msec = millis();
+	clockData.sec = clockData.sec + 1;
+
+}
+
+void Clock_Excute() {
+	FND_SetNum(clockData.min * 100 + clockData.sec);
+	Clock_Run();
+
+}

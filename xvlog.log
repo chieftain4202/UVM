@@ -1,0 +1,14 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/UVM/Project_2/ip_repo/SPI_Master_1.0/src/spi_master.sv" into library work
+INFO: [VRFC 10-311] analyzing module spi_master
+INFO: [VRFC 10-311] analyzing module btn_debounce
+INFO: [VRFC 10-311] analyzing module sw_data
+INFO: [VRFC 10-311] analyzing module SPI_master
+INFO: [VRFC 10-311] analyzing module fnd_controller
+INFO: [VRFC 10-311] analyzing module decoder_2X4
+INFO: [VRFC 10-311] analyzing module mux_4X1
+INFO: [VRFC 10-311] analyzing module digit_splitter
+INFO: [VRFC 10-311] analyzing module bcd
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/UVM/Project_2/ip_repo/SPI_Master_1.0/hdl/SPI_Master_v1_0_S00_AXI.v" into library work
+INFO: [VRFC 10-311] analyzing module SPI_Master_v1_0_S00_AXI
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/UVM/Project_2/ip_repo/SPI_Master_1.0/hdl/SPI_Master_v1_0.v" into library work
+INFO: [VRFC 10-311] analyzing module SPI_Master_v1_0

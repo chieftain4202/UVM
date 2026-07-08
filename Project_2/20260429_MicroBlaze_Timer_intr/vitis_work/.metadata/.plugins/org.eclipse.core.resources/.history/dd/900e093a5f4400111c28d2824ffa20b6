@@ -1,0 +1,68 @@
+#include "led.h"
+
+#define GPIO_LED_PIN GPIOC
+
+#define LED_PIN_0 GPIO_PIN_0
+#define LED_PIN_1 GPIO_PIN_1
+#define LED_PIN_2 GPIO_PIN_2
+#define LED_PIN_3 GPIO_PIN_3
+#define LED_PIN_4 GPIO_PIN_4
+#define LED_PIN_5 GPIO_PIN_5
+#define LED_PIN_6 GPIO_PIN_6
+#define LED_PIN_7 GPIO_PIN_7
+
+void led_init() {
+	GPIO_SetMode(GPIOC,
+			LED_PIN_0 | LED_PIN_1 | LED_PIN_2 | LED_PIN_3 | LED_PIN_4
+					| LED_PIN_5 | LED_PIN_6 | LED_PIN_7, OUTPUT);
+}
+
+void led_run() {
+
+}
+
+void led_mode() {
+	if (mode_counter) {
+		GPIO_WritePort(GPIO_LED_PIN, 0x80);
+	}
+	if (mode_clock) {
+		GPIO_WritePort(GPIO_LED_PIN, 0x40);
+	}
+}
+
+void led_hh_ss() {
+	if (clock_disp_hour) {
+		GPIO_WritePort(GPIO_LED_PIN, 0x20);
+	} else {
+		GPIO_WritePort(GPIO_LED_PIN, 0x40);
+	}
+}
+
+void led_Upcount_Shift() {
+	static uint8_t usdata = 0x00;
+	static uint8_t prevtime = 0;
+
+	if (millis() - prevtime < 100)
+		return;
+	prevtime = millis();
+	GPIO_WritePort(GPIO_LED_PIN, usdata);
+	usdata = usdata << 1;
+
+}
+
+void led_Clock_Shift() {
+	static uint8_t csdata = 0x00;
+	static uint8_t cprevtime = 0;
+
+	if (millis() - cprevtime < 500)
+		return;
+	cprevtime = millis();
+	GPIO_WritePort(GPIO_LED_PIN, csdata);
+	csdata = csdata << 1;
+
+}
+
+
+void led_drive() {
+
+}

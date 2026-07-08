@@ -42,9 +42,9 @@ module GPIO_v1_0 #(
     input wire s00_axi_rready
 
 );
-    wire cr;
-    wire idr;
-    wire odr;
+    wire [3:0] cr;
+    wire [3:0] idr;
+    wire [3:0] odr;
     // Instantiation of Axi Bus Interface S00_AXI
     GPIO_v1_0_S00_AXI #(
         .C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
@@ -99,9 +99,12 @@ module GPIO (
     genvar i;
     generate
         for (i = 0; i < 4; i = i + 1) begin
-
-            assign io_port[i] = cr[i] ? odr[i] : 1'bz;
-            assign idr[i] = cr[i] ? 1'bz : io_port[i];
+            IOBUF u_iobuf (
+                .I (odr[i]),
+                .O (idr[i]),
+                .T (~cr[i]),
+                .IO(io_port[i])
+            );
         end
     endgenerate
 

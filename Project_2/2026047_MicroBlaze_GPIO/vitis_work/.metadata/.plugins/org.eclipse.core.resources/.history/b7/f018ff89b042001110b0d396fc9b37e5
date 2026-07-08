@@ -1,0 +1,36 @@
+#include <stdint.h>
+#include "xparameters.h"
+#include "sleep.h"
+#include "xil_printf.h"
+#include "HAL/GPIO/GPIO.h"
+#include "Driver/FND/fnd.h"
+
+uint32_t millis_tick = 0;
+
+uint32_t millis() {
+	return millis_tick;
+}
+
+void millis_inc() {
+	millis_tick++;
+}
+
+void delay_ms(uint32_t msec)
+{
+	usleep(msec*1000);
+}
+
+int main() {
+
+	FND_Init();
+	uint32_t counter = 0;
+	FND_SetNum(1234);
+
+	while (1) {
+
+		FND_DispDigit();
+		usleep(1000);
+		millis();
+	}
+	return 0;
+}

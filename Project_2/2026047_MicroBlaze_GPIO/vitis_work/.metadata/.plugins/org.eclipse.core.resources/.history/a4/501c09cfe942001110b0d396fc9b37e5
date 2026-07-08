@@ -1,0 +1,59 @@
+/*
+ * ap_main.c
+ *
+ *  Created on: 2026. 4. 28.
+ *      Author: kccistc
+ */
+
+#include "ap_main.h"
+#include "../Driver/FND/fnd.h"
+#include "../common/common.h"
+#include "UpCounter/UpCounter.h"
+#include "Clock/Clock.h"
+
+typedef enum {
+	counter, clock,
+} mode_state_t;
+
+hBtn_t hBtnMode;
+
+
+void ap_init() {
+	UpCounter_Init();
+	Clock_Init();
+	Button_Init(&hBtnMode, GPIOA, GPIO_PIN_5);
+}
+
+void Watch_UartPrint() {
+   printf("%02d : %02d : %02d\n", clockData.hour, clockData.min, clockData.sec);
+}
+
+void ap_excute() {
+    static mode_state_t ModeState = counter;
+
+    while (1) {
+        Clock_Run();      // 항상 실행
+        millis_inc();     // 항상 실행
+        delay_ms(1);      // 항상 실행
+
+        if (Button_GetState(&hBtnMode) == ACT_PUSHED) {
+            if (ModeState == counter) {
+                ModeState = clock;
+            } else {
+                ModeState = counter;
+            }
+        }
+
+        switch (ModeState) {
+        case counter:
+            UpCounter_Excute();
+            break;
+
+        case clock:
+            Clock_Excute();
+            break;
+        }
+        Watch_UartPrint();
+    }
+}
+

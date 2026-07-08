@@ -1,0 +1,14 @@
+
+#ifndef SRC_AP_CLOCK_CLOCK_H_
+#define SRC_AP_CLOCK_CLOCK_H_
+
+#include "../../Driver/FND/fnd.h"
+#include "../../Driver/Button/button.h"
+#include "../../common/common.h"
+
+static clock_t clockData;
+void Clock_Init();
+void Clock_Run();
+void Clock_Excute();
+
+#endif /* SRC_AP_CLOCK_CLOCK_H_ */
