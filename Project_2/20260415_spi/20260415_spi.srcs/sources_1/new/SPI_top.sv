@@ -46,8 +46,7 @@ module SPI_top (
         .miso   (miso),
         .cs_n   (cs_n),
         .sdone  (sdone),
-        .t_idle (t_idle),
-        .bit_cnt(bit_cnt)
+        .t_idle (t_idle)
     );
 
 

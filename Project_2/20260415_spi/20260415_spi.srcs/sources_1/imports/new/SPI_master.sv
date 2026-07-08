@@ -18,6 +18,9 @@ module SPI_master (
     output logic        t_idle,
     output logic [2:0] bit_cnt
 );
+
+   // assign tx_data = 8'haa;
+
     typedef enum logic [1:0] {
         IDLE  = 2'b00,
         START,

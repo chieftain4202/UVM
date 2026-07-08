@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="166400001fs"></ZoomEndTime>
-      <Cursor1Time time="1000000fs"></Cursor1Time>
+      <ZoomEndTime time="846000001fs"></ZoomEndTime>
+      <Cursor1Time time="96500000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="149"></NameColumnWidth>
-      <ValueColumnWidth column_width="71"></ValueColumnWidth>
+      <ValueColumnWidth column_width="67"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="2" />
    <wvobject fp_name="group60" type="group">
@@ -65,6 +65,7 @@
       <wvobject fp_name="/tb_i2c_master/dut/U_I2C_Master/u_i2c_master/rx_shift_reg" type="array">
          <obj_property name="ElementShortName">rx_shift_reg[7:0]</obj_property>
          <obj_property name="ObjectShortName">rx_shift_reg[7:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_master/dut/U_I2C_Master/M_rx_data" type="array">
          <obj_property name="ElementShortName">M_rx_data[7:0]</obj_property>
@@ -141,10 +142,6 @@
          <obj_property name="ElementShortName">sda_r</obj_property>
          <obj_property name="ObjectShortName">sda_r</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/scl_r" type="logic">
-         <obj_property name="ElementShortName">scl_r</obj_property>
-         <obj_property name="ObjectShortName">scl_r</obj_property>
-      </wvobject>
       <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/edge_scl" type="logic">
          <obj_property name="ElementShortName">edge_scl</obj_property>
          <obj_property name="ObjectShortName">edge_scl</obj_property>
@@ -174,16 +171,8 @@
          <obj_property name="ObjectShortName">sda_i</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/bit_cnt" type="array">
-         <obj_property name="ElementShortName">bit_cnt[3:0]</obj_property>
-         <obj_property name="ObjectShortName">bit_cnt[3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/ack_in_r" type="logic">
-         <obj_property name="ElementShortName">ack_in_r</obj_property>
-         <obj_property name="ObjectShortName">ack_in_r</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/start" type="logic">
-         <obj_property name="ElementShortName">start</obj_property>
-         <obj_property name="ObjectShortName">start</obj_property>
+         <obj_property name="ElementShortName">bit_cnt[2:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_cnt[2:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_i2c_master/dut/U_I2c_Slave/step" type="array">
          <obj_property name="ElementShortName">step[1:0]</obj_property>

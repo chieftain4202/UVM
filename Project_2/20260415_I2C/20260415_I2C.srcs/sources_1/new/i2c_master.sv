@@ -111,6 +111,7 @@ module i2c_master (
             is_read      <= 1'b0;
             bit_cnt      <= 0;
             ack_in_r     <= 1'b1;
+            ack_out      <= 1'b1;
         end else begin
             done <= 1'b0;
             case (state)
@@ -165,6 +166,7 @@ module i2c_master (
                         rx_shift_reg <= 0;
                         bit_cnt <= 0;
                         is_read <= 1'b1;
+                        ack_in_r <= ack_in;
                         state <= DATA;
                     end else if (cmd_stop) begin
                         state <= STOP;

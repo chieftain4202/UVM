@@ -7,7 +7,7 @@ module SPI_slave (
     input  logic       rst,
     input  logic       mosi,
     input  logic [7:0] tx_data,
-    input  logic [2:0] bit_cnt,
+    //input  logic [2:0] bit_cnt,
     input  logic       cs_n,
     input  logic       t_idle,
     output logic [7:0] rx_data,
@@ -16,6 +16,7 @@ module SPI_slave (
 );
 
     logic edge_d;
+    logic [2:0] bit_cnt;
     logic e_rise, e_fall;
     logic [7:0] tx_shift_reg, rx_shift_reg;
     logic cs_n_d;
@@ -42,6 +43,7 @@ module SPI_slave (
         if (rst) begin
             tx_shift_reg <= 0;
             rx_shift_reg <= 0;
+            bit_cnt      <= 0;
             echo_data    <= 0;
             echo_valid   <= 1'b0;
             rx_data      <= 0;
@@ -73,7 +75,10 @@ module SPI_slave (
                             echo_data <= {rx_shift_reg[6:0], mosi};
                             echo_valid <= 1'b1;
                             sdone <= 1'b1;
-                        end
+                            bit_cnt <= 0;
+                        end else  begin 
+                            bit_cnt <= bit_cnt + 1;
+                            end
                     rx_shift_reg <= {rx_shift_reg[6:0], mosi};
                     end
                 end

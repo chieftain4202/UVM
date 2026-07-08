@@ -16,7 +16,7 @@ module I2c_demo_top (
 
     } i2c_state_e;
 
-    localparam SLA_W = {7'h12, 1'b0};
+    localparam SLA_W = {7'h38, 1'b0};
     i2c_state_e       state;
 
     logic       [7:0] counter;
@@ -36,14 +36,6 @@ module I2c_demo_top (
     wire              sda;
 
 
-    i2c_slave U_I2c_Slave (
-        .*,
-        .tx_data(S_tx_data),
-        .rx_data(S_rx_data)
-
-    );
-
-
     I2C_Master U_I2C_Master (
         .clk(clk),
         .rst(rst),
@@ -60,7 +52,8 @@ module I2c_demo_top (
             cmd_write <= 0;
             cmd_read  <= 0;
             cmd_stop  <= 0;
-            M_tx_data   <= 0;
+            M_tx_data  <= 0;
+            ack_in     <= 1'b1;
         end else begin
             case (state)
                 IDLE: begin

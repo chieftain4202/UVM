@@ -49,9 +49,9 @@ module tb_i2c_master ();
         @(posedge clk);
     endtask
 
-    task i2c_addr(byte addr);
-        // tx_data = address(8'h12) + rw
-        M_tx_data = addr;
+    task i2c_addr(bit [6:0] addr, bit rw);
+        // tx_data = {7-bit slave address, rw}
+        M_tx_data = {addr, rw};
         cmd_start = 1'b0;
         cmd_write = 1'b1;
         cmd_read  = 1'b0;
@@ -100,15 +100,19 @@ module tb_i2c_master ();
         repeat (3) @(posedge clk);
         rst = 0;
         @(posedge clk);
-        S_tx_data = 8'b11101110;
         i2c_start();
-        i2c_addr(7'b1110001);
+        i2c_addr(7'b0111000, 1'b0);
         i2c_write(8'h55);
+        i2c_addr(7'b0111000, 1'b0);
         i2c_write(8'haa);
+        i2c_addr(7'b0111000, 1'b1);
         i2c_read();
         i2c_read();
+        i2c_addr(7'b0111000, 1'b0);
         i2c_write(8'h03);
+        i2c_addr(7'b0111000, 1'b0);
         i2c_write(8'h04);
+        i2c_addr(7'b0111000, 1'b0);
         i2c_write(8'h05);
         i2c_write(8'hff);
         i2c_stop();

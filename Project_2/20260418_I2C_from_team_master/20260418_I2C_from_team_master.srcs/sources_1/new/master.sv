@@ -573,7 +573,7 @@ module master_top (
         STOP_WAIT
     } i2c_state_e;
 
-    localparam logic [7:0] SLA_W = {7'h12, 1'b0};
+    localparam logic [7:0] SLA_W = {7'h55, 1'b0};
     localparam int START_DEBOUNCE_MAX = 2_000_000;
 
     i2c_state_e state;
@@ -581,11 +581,6 @@ module master_top (
     logic [7:0] sw_tx_data;
     logic [15:0] sw_meta;
     logic [15:0] sw_sync;
-    logic        start_db;
-    logic        start_db_prev;
-    logic        start_rise;
-    logic [$clog2(START_DEBOUNCE_MAX)-1:0] start_cnt;
-
     logic       cmd_start;
     logic       cmd_write;
     logic       cmd_read;
@@ -600,7 +595,6 @@ module master_top (
     logic [13:0] fnd_in_data;
 
     assign ack_in      = 1'b1;
-    assign start_rise  = start_db & ~start_db_prev;
     assign fnd_in_data = {6'd0, sw_tx_data};
 
     I2C_Master_top U_I2C_MASTER_TOP (
@@ -634,9 +628,6 @@ module master_top (
             sw_tx_data    <= 8'h00;
             sw_meta       <= 16'h0000;
             sw_sync       <= 16'h0000;
-            start_db      <= 1'b0;
-            start_db_prev <= 1'b0;
-            start_cnt     <= '0;
             cmd_start     <= 1'b0;
             cmd_write     <= 1'b0;
             cmd_read      <= 1'b0;
@@ -646,17 +637,6 @@ module master_top (
             sw_meta <= sw;
             sw_sync <= sw_meta;
 
-            start_db_prev <= start_db;
-
-            if (sw_sync[15] == start_db) begin
-                start_cnt <= '0;
-            end else if (start_cnt == START_DEBOUNCE_MAX - 1) begin
-                start_db  <= sw_sync[15];
-                start_cnt <= '0;
-            end else begin
-                start_cnt <= start_cnt + 1'b1;
-            end
-
             cmd_start <= 1'b0;
             cmd_write <= 1'b0;
             cmd_read  <= 1'b0;
@@ -664,10 +644,8 @@ module master_top (
 
             case (state)
                 IDLE: begin
-                    if (start_rise) begin
-                        sw_tx_data <= sw_sync[7:0];
-                        state      <= START_CMD;
-                    end
+                    sw_tx_data <= sw_sync[7:0];
+                    state      <= START_CMD;
                 end
 
                 START_CMD: begin

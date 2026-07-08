@@ -1,0 +1,8 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+d:/Project_2/20260415_I2C/20260415_I2C.srcs/sources_1/new/I2c_demo_top.sv,1776418986,systemVerilog,,,,I2c_demo_top,,,,,,,,
+d:/Project_2/20260415_I2C/20260415_I2C.srcs/sources_1/new/i2c_master.sv,1783299223,systemVerilog,,,,I2C_Master;i2c_master,,,,,,,,
+d:/Project_2/20260415_I2C/20260415_I2C.srcs/sources_1/new/i2c_slave.sv,1783300118,systemVerilog,,,,i2c_slave,,,,,,,,
+d:/Project_2/20260415_I2C/20260415_I2C.srcs/sources_1/new/top_I2c_MS.sv,1776427906,systemVerilog,,,,top_I2c_MS,,,,,,,,
